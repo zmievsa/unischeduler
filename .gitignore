@@ -1,0 +1,9 @@
+# Automatically created
+*.pyc
+*.json
+*.code-workspace
+.mypy_cache
+
+# Casual work
+log.txt
+*.ics
