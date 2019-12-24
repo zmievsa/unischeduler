@@ -5,7 +5,6 @@ from typing import List, Tuple, Union
 def parse_schedule(schedule: str) -> List[Union[str, List[str]]]:
     schedule = "\n".join([l.strip()
                           for l in schedule.splitlines() if l.strip()])
-    print(schedule)
     re_summary = re.compile(r"[A-Z]{3}[A-Z]* \d+[A-Z]? - .+")
     # Good luck figuring this out!
     re_details = re.compile(

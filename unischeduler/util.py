@@ -37,6 +37,5 @@ class ErrorHandler:
             if isinstance(value, SchedulerError):
                 self.handler_method(str(value))
             else:
-                print(type, value)
                 self.handler_method('UNKNOWN ERROR OCCURRED. CHECK LOG FILE')
         return True  # Suppresses exceptions for some magical reason

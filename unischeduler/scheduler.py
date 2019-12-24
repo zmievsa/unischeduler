@@ -59,13 +59,3 @@ def create_event(event: CalendarEvent, timeless_exdates=None):
                    for e in timeless_exdates]
         ical_event.add("exdate", exdates)
     return ical_event
-
-
-if __name__ == '__main__':
-    from pathlib import Path
-    folder = Path(__file__).parent.resolve()
-    with open(folder / "schedule.txt") as f:
-        icalendar = main(f.read())
-    with open(folder / "schedule.ics", "wb") as f2:
-        print(icalendar.decode("UTF-8"))
-        f2.write(icalendar)
