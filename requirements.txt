@@ -2,5 +2,3 @@ setuptools
 icalendar
 bs4
 requests
-pyinstaller
-PyQt5
