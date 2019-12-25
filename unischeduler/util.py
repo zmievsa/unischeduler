@@ -21,10 +21,10 @@ class ErrorHandler:
 
     def __exit__(self, type, value, traceback):
         if traceback is None:
-            self.handler_method("Finished successfully!")
+            self.output_handler("Finished successfully!")
         else:
             if isinstance(value, SchedulerError):
-                self.handler_method(str(value))
+                self.output_handler(str(value))
             else:
                 self.unknown_error_handler(''.join(format_exception(type, value, traceback)))
         return True  # Suppresses exceptions for some magical reason
