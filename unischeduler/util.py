@@ -1,31 +1,30 @@
-from pathlib import Path
-from traceback import print_exception
+from traceback import format_exception
+from typing import Callable, Any
 
 
 TIMEZONE = "America/New_York"
+OutputHandler = Callable[[str], Any]
 
 
 class SchedulerError(Exception):
+    """ Common base class for all non-halting exceptions """
     pass
 
 
 class ErrorHandler:
-    def __init__(self, handler_method):
-        self.handler_method = handler_method
-    
+    def __init__(self, output_handler: OutputHandler, unknown_error_handler: OutputHandler = print):
+        self.output_handler = output_handler
+        self.unknown_error_handler = unknown_error_handler
+
     def __enter__(self):
         pass
-   
+
     def __exit__(self, type, value, traceback):
         if traceback is None:
             self.handler_method("Finished successfully!")
         else:
-            log_path = Path(__file__).parent / "log.txt"
-            with open(log_path, 'w') as f:
-                print_exception(type, value, traceback)
-                print_exception(type, value, traceback, file=f)
             if isinstance(value, SchedulerError):
                 self.handler_method(str(value))
             else:
-                self.handler_method('UNKNOWN ERROR OCCURRED. CHECK LOG FILE')
+                self.unknown_error_handler(''.join(format_exception(type, value, traceback)))
         return True  # Suppresses exceptions for some magical reason
