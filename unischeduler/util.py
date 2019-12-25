@@ -1,8 +1,5 @@
 from pathlib import Path
-import sys
 from traceback import print_exception
-import datetime as dt
-from typing import List
 
 
 TIMEZONE = "America/New_York"
