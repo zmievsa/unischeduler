@@ -2,11 +2,11 @@ import datetime as dt
 
 import icalendar as ical
 
-from models import CalendarEvent, ClassSection, RegularEvent
-from scrapper import scrap_no_school_events
-from text_parser import parse_schedule
+from .models import CalendarEvent, ClassSection, RegularEvent
+from .scrapper import scrap_no_school_events
+from .text_parser import parse_schedule
 
-from util import SchedulerError, TIMEZONE
+from .util import SchedulerError, TIMEZONE
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/calendar'

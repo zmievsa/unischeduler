@@ -1,15 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
-from requests import ConnectionError
 
-from util import SchedulerError
+from .util import SchedulerError
 
 
 def scrap_term_dates(year, term):
     url = f"https://calendar.ucf.edu/{year}/{term}"
     try:
         r = requests.get(url)
-    except ConnectionError as e:
+    except requests.ConnectionError as e:
         raise SchedulerError("There's a problem with your internet connection. Please, try again.") from e
     soup = BeautifulSoup(r.text, "html.parser")
     titles = soup.find_all("h2", {"class": "mt-3 mb-2"})

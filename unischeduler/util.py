@@ -7,13 +7,6 @@ from typing import List
 
 TIMEZONE = "America/New_York"
 
-# When we put everything in pyinstaller, the directory of data files is in sys._MEIPASS
-try:
-    BASE_PATH = Path(sys._MEIPASS)
-except:
-    BASE_PATH = Path(__file__).parent
-DATA_FOLDER = BASE_PATH / "data"
-
 
 class SchedulerError(Exception):
     pass

@@ -4,7 +4,7 @@ from typing import List, Union
 import pytz
 from icalendar import prop
 
-from util import SchedulerError, TIMEZONE
+from .util import SchedulerError, TIMEZONE
 
 TIME_FORMAT = "%I:%M%p"
 ICAL_TIME_FORMAT = "%H%M%S"
