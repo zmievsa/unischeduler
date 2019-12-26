@@ -1,4 +1,0 @@
-setuptools
-icalendar
-bs4
-requests
