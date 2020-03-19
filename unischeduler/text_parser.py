@@ -8,7 +8,7 @@ def parse_schedule(schedule: str) -> List[Union[str, List[str]]]:
     re_summary = re.compile(r"[A-Z]{3}[A-Z]* \d+[A-Z]? - .+")
     # Good luck figuring this out!
     re_details = re.compile(
-        r"(?:[A-Z][a-z]+\n)?(?:[A-Z][a-z])+ \d\d?:\d\d.+\n.+(?:[A-Za-z:\-\s\d,])+.+")
+        r"(?:[A-Z][a-z]+\n)?(?:[A-Z][a-z])+ \d\d?:\d\d.+\n.+(?:[A-Za-z:\-\s\d,\.])+.+")
     class_summaries = re_summary.findall(schedule)
     classes = re_summary.split(schedule)[1:]  # classes[0] == ''
     sections: List[Union[List[str], str]] = []
