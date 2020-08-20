@@ -19,10 +19,9 @@ def main(schedule: str, isUCF=False):
     if not sections:
         raise SchedulerError("Something's weird about your schedule. Contact my author")
     year, term = sections[0].get_year(), sections[0].get_term()
-    no_school_events = get_no_school_events(year, term, isUCF)
+    no_school_events = get_no_school_events(year, term) if isUCF else []
     exdates = make_timeless_exdates(no_school_events)
-    cal = ical.Calendar(
-        summary=f"Classes {term} {year}", timezone=TIMEZONE)
+    cal = ical.Calendar(summary=f"Classes {term} {year}", timezone=TIMEZONE)
     for section in sections:
         cal.add_component(create_event(section, exdates))
     for event in no_school_events:
@@ -30,11 +29,8 @@ def main(schedule: str, isUCF=False):
     return cal.to_ical()
 
 
-def get_no_school_events(year, term, isUCF):
-    if isUCF:
-        return [RegularEvent(**e) for e in scrap_no_school_events(year, term)]
-    else:
-        return []
+def get_no_school_events(year, term):
+    return [RegularEvent(**e) for e in scrap_no_school_events(year, term)]
 
 
 def make_timeless_exdates(no_school_events):
